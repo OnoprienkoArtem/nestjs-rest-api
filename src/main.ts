@@ -5,6 +5,7 @@ import { CustomExceptionFilter } from './exception-filters/custom.exception-filt
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+
   app.useGlobalPipes(new ValidationPipe());
   app.useGlobalFilters(new CustomExceptionFilter());
   app.enableCors({
@@ -12,4 +13,5 @@ async function bootstrap() {
   });
   await app.listen(process.env.APP_PORT, '0.0.0.0');
 }
+
 bootstrap();
