@@ -1,0 +1,18 @@
+name: Release Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Release Please Action
+        uses: release-please/action@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
