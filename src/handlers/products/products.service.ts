@@ -5,13 +5,17 @@ import {
   Injectable,
   OnModuleInit,
 } from '@nestjs/common';
-import { ProductDto, ProductRespDto, ProductUpdateDto } from './dto/product.dto';
+import {
+  ProductDto,
+  ProductRespDto,
+  ProductUpdateDto,
+} from './dto/product.dto';
 import { randomUUID } from 'crypto';
 
 @Injectable()
 export class ProductsService implements OnModuleInit {
   private productsList = new Map<string, ProductDto>();
-
+  // eslint-disable-next-line no-unused-vars
   constructor(@Inject('PRODUCTS') private products: ProductDto[]) {}
 
   async onModuleInit() {
@@ -53,6 +57,8 @@ export class ProductsService implements OnModuleInit {
   }
 
   private async fillQuotesMap(): Promise<void> {
-    this.products.forEach((product: ProductDto) => this.productsList.set(product.id, product));
+    this.products.forEach((product: ProductDto) =>
+      this.productsList.set(product.id, product),
+    );
   }
 }
