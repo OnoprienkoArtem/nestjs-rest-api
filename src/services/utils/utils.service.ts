@@ -3,11 +3,9 @@ import { Inject, Injectable, Scope } from '@nestjs/common';
 @Injectable({ scope: Scope.DEFAULT })
 export class UtilsService {
   constructor(
-    @Inject('Constants')
-    private readonly constants,
-
-    @Inject('DateService')
-    private readonly dateService,
+    // eslint-disable-next-line no-unused-vars
+    @Inject('Constants') private readonly constants,
+    @Inject('DateService') private readonly dateService,
   ) {
     console.log('Utility service was created');
     console.log(dateService.getTimeFromStart());

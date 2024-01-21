@@ -1,8 +1,4 @@
-import {
-  CanActivate,
-  ExecutionContext,
-  Injectable,
-} from '@nestjs/common';
+import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { Request } from 'express';
 import { Reflector } from '@nestjs/core';
 import { UnauthorizedException } from '../exceptions/UnauthorizedException';
@@ -11,7 +7,11 @@ import { SKIP_AUTH_KEY } from './skip-auth.decorator';
 
 @Injectable()
 export class ApiKeyAuthGuard implements CanActivate {
-  constructor(private reflector: Reflector) {}
+  public reflector: Reflector;
+
+  constructor(reflector: Reflector) {
+    this.reflector = reflector;
+  }
 
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const skipAuth = this.reflector.get<boolean>(
@@ -31,7 +31,7 @@ export class ApiKeyAuthGuard implements CanActivate {
     }
 
     if (apiKeyHeaderValue !== 'secret') {
-      throw new NotFoundException('Api key doesn\'t match');
+      throw new NotFoundException("Api key doesn't match");
     }
 
     return true;
