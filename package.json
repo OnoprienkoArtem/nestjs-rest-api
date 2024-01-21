@@ -21,7 +21,9 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "prepare": "husky install",
-    "sonar-scanner-local": "sonar-scanner"
+    "sonar-scanner-local": "sonar-scanner",
+    "audit": "audit-ci",
+    "prepush": "npm run test && npm run sonar-scanner-local && npm run audit"
   },
   "dependencies": {
     "@nestjs/common": "^8.0.0",
@@ -47,6 +49,7 @@
     "@types/supertest": "^2.0.11",
     "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
+    "audit-ci": "^6.6.1",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
